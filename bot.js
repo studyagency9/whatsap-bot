@@ -334,41 +334,43 @@ async function startBot() {
     const { loadBusinessData } = require('./ai');
     loadBusinessData();
     
-    // Serveur HTTP pour le health check de Digital Ocean
-    const express = require('express');
-    const app = express();
-    const PORT = process.env.PORT || 8080;
-
-    app.get('/', (req, res) => {
-      res.status(200).json({
-        status: 'OK',
-        service: 'WhatsApp Bot Malik',
-        timestamp: new Date().toISOString(),
-        uptime: process.uptime()
-      });
-    });
-
-    app.get('/health', (req, res) => {
-      res.status(200).json({
-        status: 'healthy',
-        service: 'WhatsApp Bot Malik',
-        timestamp: new Date().toISOString()
-      });
-    });
-
-    // Démarrer le serveur HTTP
-    app.listen(PORT, () => {
-      console.log(`🌐 Serveur health check démarré sur le port ${PORT}`);
-    });
-
     // Démarrer le bot WhatsApp
-    await connectToWhatsApp();
+    connectToWhatsApp().catch(err => {
+      console.error('❌ Erreur connexion WhatsApp:', err);
+      process.exit(1);
+    });
     
   } catch (error) {
     console.error('❌ Erreur fatale:', error);
     process.exit(1);
   }
 }
+
+// Serveur HTTP pour le health check de Digital Ocean
+const app = express();
+const PORT = process.env.PORT || 8080;
+
+app.get('/', (req, res) => {
+  res.status(200).json({
+    status: 'OK',
+    service: 'WhatsApp Bot Malik',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime()
+  });
+});
+
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'healthy',
+    service: 'WhatsApp Bot Malik',
+    timestamp: new Date().toISOString()
+  });
+});
+
+// Démarrer le serveur HTTP
+app.listen(PORT, () => {
+  console.log(`🌐 Serveur health check démarré sur le port ${PORT}`);
+});
 
 process.on('uncaughtException', (error) => {
   console.error('❌ Erreur non gérée:', error);
