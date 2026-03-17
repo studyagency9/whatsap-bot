@@ -1,0 +1,101 @@
+{
+  "nom_business": "Chez Fatou Mode",
+  "description": "Vente de vêtements africains de qualité, pagnes, boubous, accessoires",
+  "telephone": "+221 77 123 45 67",
+  "horaires": "Lundi - Samedi: 9h - 20h | Dimanche: 10h - 18h",
+  "localisation": "Dakar, Plateau",
+  "livraison": "Livraison gratuite à partir de 25 000 FCFA",
+  "paiement": "Wave, Orange Money, Cash",
+  "produits": [
+    {
+      "id": "P001",
+      "nom": "Boubou homme brodé",
+      "prix": 35000,
+      "devise": "FCFA",
+      "description": "Boubou traditionnel en bazin riche avec broderie dorée. Disponible en blanc, bleu, noir",
+      "stock": true,
+      "images": [
+        "https://res.cloudinary.com/dw3rajw6i/image/upload/v1773764117/1-a_nok7qr.jpg",
+        "https://res.cloudinary.com/dw3rajw6i/image/upload/v1773764118/1_ic5gwz.jpg"
+      ],
+      "video": "https://example.com/boubou-demo.mp4",
+      "categorie": "Homme"
+    },
+    {
+      "id": "P002",
+      "nom": "Ensemble pagne femme",
+      "prix": 28000,
+      "devise": "FCFA",
+      "description": "Ensemble 3 pièces: haut, jupe et foulard. Tissu wax hollandais. Plusieurs motifs disponibles",
+      "stock": true,
+      "images": [
+        "https://res.cloudinary.com/dw3rajw6i/image/upload/v1773764119/2_cj9whd.jpg",
+        "https://res.cloudinary.com/dw3rajw6i/image/upload/v1773764116/2-a_rptpc1.jpg"
+      ],
+      "video": null,
+      "categorie": "Femme"
+    },
+    {
+      "id": "P003",
+      "nom": "Robe ankara moderne",
+      "prix": 22000,
+      "devise": "FCFA",
+      "description": "Robe courte style moderne en tissu ankara. Parfait pour soirées et événements",
+      "stock": true,
+      "images": [
+        "https://res.cloudinary.com/dw3rajw6i/image/upload/v1773764118/3-a_zwpux9.jpg",
+        "https://res.cloudinary.com/dw3rajw6i/image/upload/v1773764117/3_qaiprt.jpg"
+      ],
+      "video": "https://example.com/robe-demo.mp4",
+      "categorie": "Femme"
+    },
+    {
+      "id": "P004",
+      "nom": "Chemise bazin homme",
+      "prix": 18000,
+      "devise": "FCFA",
+      "description": "Chemise élégante en bazin. Coupe moderne. Disponible en plusieurs couleurs",
+      "stock": true,
+      "images": [
+        "https://res.cloudinary.com/dw3rajw6i/image/upload/v1773764117/4_usyo41.jpg",
+        "https://res.cloudinary.com/dw3rajw6i/image/upload/v1773764115/4-a_vkiqy9.jpg"
+      ],
+      "video": null,
+      "categorie": "Homme"
+    },
+    {
+      "id": "P005",
+      "nom": "Sac à main artisanal",
+      "prix": 12000,
+      "devise": "FCFA",
+      "description": "Sac fait main avec perles et tissu wax. Unique et original",
+      "stock": true,
+      "images": [
+        "https://res.cloudinary.com/dw3rajw6i/image/upload/v1773764119/5-a_wvpzfq.jpg",
+        "https://res.cloudinary.com/dw3rajw6i/image/upload/v1773764116/5_vmhhnk.jpg"
+      ],
+      "video": null,
+      "categorie": "Accessoires"
+    }
+  ],
+  "promotions": [
+    {
+      "description": "Promo spéciale: -15% sur tous les boubous jusqu'au 30 mars",
+      "active": true
+    }
+  ],
+  "faq": [
+    {
+      "question": "Vous livrez où?",
+      "reponse": "On livre partout à Dakar en 24h. Pour les autres régions, comptez 2-3 jours"
+    },
+    {
+      "question": "Je peux essayer avant d'acheter?",
+      "reponse": "Oui bien sûr! Passez à notre boutique au Plateau ou on peut vous envoyer plusieurs tailles"
+    },
+    {
+      "question": "Comment commander?",
+      "reponse": "Dites-moi ce qui vous intéresse, je vous envoie les photos et on finalise ensemble"
+    }
+  ]
+}

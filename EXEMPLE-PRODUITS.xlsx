@@ -1,0 +1,6 @@
+id,nom,prix,devise,description,images,video,categorie,stock
+P001,Boubou homme brodé,35000,FCFA,Boubou traditionnel en bazin riche avec broderie dorée,https://example.com/boubou1.jpg,https://example.com/boubou-demo.mp4,Homme,true
+P002,Ensemble pagne femme,28000,FCFA,Ensemble 3 pièces: haut jupe et foulard en wax hollandais,https://example.com/pagne1.jpg,,Femme,true
+P003,Robe ankara moderne,22000,FCFA,Robe courte style moderne en tissu ankara,https://example.com/robe1.jpg,https://example.com/robe-demo.mp4,Femme,true
+P004,Chemise bazin homme,18000,FCFA,Chemise élégante en bazin coupe moderne,https://example.com/chemise1.jpg,,Homme,true
+P005,Sac à main artisanal,12000,FCFA,Sac fait main avec perles et tissu wax,https://example.com/sac1.jpg,,Accessoires,true

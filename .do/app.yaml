@@ -1,0 +1,20 @@
+name: whatsapp-bot
+services:
+- name: web
+  source_dir: /
+  github:
+    repo: ton-username/whatsapp-bot  # Change ça!
+    branch: main
+  run_command: node bot.js
+  environment_slug: node-js
+  instance_count: 1
+  instance_size_slug: basic-xxs
+  envs:
+  - key: NODE_ENV
+    value: production
+  - key: GOOGLE_API_KEY
+    value: "AIzaSyCFKjNGYXFxVm21huzOp_JLrS1qUROYd8M"
+  - key: VERTEX_API_KEY
+    value: "AQ.Ab8RN6KlTnWguB20WLmdgZvVrS_cAJgUtdta3SLFyqMFIsgUCw"
+  - key: ADMIN_NUMBER
+    value: "+237691988958"
