@@ -3,6 +3,7 @@ const qrcode = require('qrcode-terminal');
 const pino = require('pino');
 const fs = require('fs');
 const path = require('path');
+const express = require('express');
 const { getAIResponse } = require('./ai');
 require('dotenv').config();
 
@@ -333,6 +334,34 @@ async function startBot() {
     const { loadBusinessData } = require('./ai');
     loadBusinessData();
     
+    // Serveur HTTP pour le health check de Digital Ocean
+    const express = require('express');
+    const app = express();
+    const PORT = process.env.PORT || 8080;
+
+    app.get('/', (req, res) => {
+      res.status(200).json({
+        status: 'OK',
+        service: 'WhatsApp Bot Malik',
+        timestamp: new Date().toISOString(),
+        uptime: process.uptime()
+      });
+    });
+
+    app.get('/health', (req, res) => {
+      res.status(200).json({
+        status: 'healthy',
+        service: 'WhatsApp Bot Malik',
+        timestamp: new Date().toISOString()
+      });
+    });
+
+    // Démarrer le serveur HTTP
+    app.listen(PORT, () => {
+      console.log(`🌐 Serveur health check démarré sur le port ${PORT}`);
+    });
+
+    // Démarrer le bot WhatsApp
     await connectToWhatsApp();
     
   } catch (error) {

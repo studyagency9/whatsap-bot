@@ -3,17 +3,30 @@ services:
 - name: web
   source_dir: /
   github:
-    repo: ton-username/whatsapp-bot  # Change ça!
-    branch: main
+    repo: studyagency9/whatsap-bot
+    branch: master
   run_command: node bot.js
   environment_slug: node-js
   instance_count: 1
   instance_size_slug: basic-xxs
+  http_port: 8080
+  routes:
+  - path: /
+    preserve_path_prefix: false
+  health_check:
+    http_path: /health
+    initial_delay_seconds: 60
+    period_seconds: 30
+    timeout_seconds: 10
+    failure_threshold: 3
+    success_threshold: 1
   envs:
   - key: NODE_ENV
     value: production
+  - key: PORT
+    value: "8080"
   - key: GOOGLE_API_KEY
-    value: "AIzaSyCFKjNGYXFxVm21huzOp_JLrS1qUROYd8M"
+    value: "AIzaSyD4cUIn8m54iEjbtL_fN_naVovEBbzwxPc"
   - key: VERTEX_API_KEY
     value: "AQ.Ab8RN6KlTnWguB20WLmdgZvVrS_cAJgUtdta3SLFyqMFIsgUCw"
   - key: ADMIN_NUMBER
