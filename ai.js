@@ -88,6 +88,24 @@ async function callGoogleAI(conversationText) {
       console.log('🔍 Google AI Status:', res.statusCode);
       let data = '';
       
+      // Gérer les erreurs de service (503, 429, 500, etc.)
+      if (res.statusCode >= 400) {
+        if (res.statusCode === 429) {
+          console.log('⚠️ Google AI: Quota dépassé (429)');
+          reject(new Error('QUOTA_EXCEEDED'));
+        } else if (res.statusCode === 503) {
+          console.log('⚠️ Google AI: Service indisponible (503)');
+          reject(new Error('SERVICE_UNAVAILABLE'));
+        } else if (res.statusCode >= 500) {
+          console.log('⚠️ Google AI: Erreur serveur');
+          reject(new Error('SERVICE_ERROR'));
+        } else {
+          console.log('⚠️ Google AI: Erreur client');
+          reject(new Error('CLIENT_ERROR'));
+        }
+        return;
+      }
+      
       res.on('data', (chunk) => {
         data += chunk;
       });
@@ -242,9 +260,13 @@ async function getAIResponse(userMessage, conversationHistory = []) {
       response = await callGoogleAI(conversationText);
       console.log('✅ Réponse de Google AI Studio');
     } catch (googleError) {
-      // Si c'est une erreur de quota, basculer silencieusement vers Vertex AI
-      if (googleError.message && googleError.message.includes('quota')) {
+      // Gérer les différents types d'erreurs Google AI
+      if (googleError.message === 'QUOTA_EXCEEDED') {
         console.log('🔄 Quota Google AI atteint, utilisation de Vertex AI');
+      } else if (googleError.message === 'SERVICE_UNAVAILABLE') {
+        console.log('🔄 Google AI service 503, utilisation de Vertex AI');
+      } else if (googleError.message === 'SERVICE_ERROR') {
+        console.log('🔄 Google AI serveur erreur, utilisation de Vertex AI');
       } else {
         console.log('⚠️ Google AI Studio indisponible, bascule vers Vertex AI...');
       }
@@ -257,10 +279,10 @@ async function getAIResponse(userMessage, conversationHistory = []) {
           console.log('✅ Réponse de Vertex AI');
         } catch (vertexError) {
           console.error('❌ Vertex AI aussi en erreur');
-          throw googleError;
+          throw new Error('Les deux services IA sont indisponibles');
         }
       } else {
-        throw googleError;
+        throw new Error('Google AI indisponible et Vertex AI non configuré');
       }
     }
     
